@@ -28,7 +28,7 @@ Below, we list all the options we support. Each option is going to enable/disabl
   (e.g. ### 0x2d70a38, quantifier-QID, Father: #100).  ==
 * (optional) `-tr:dummy` logs dummy instantiations. A dummy instantiation is easily reduce to true or to sat by Z3.  
   (e.g. Instantiate the following with a=-3. forall a:int :: a>=0 ==> abs(a)==a).    
-* (optional) `-tr:causality` logs the dependencies among quantifiers. Each instantiation reports a `Father` tag (e.g. Father: #100). Moreover, each instantiation reports the enodes the instantiation is creating (e.g. EN: #100).  
+* (optional) `-tr:causality` logs the dependencies between quantifiers. Each instantiation reports a `Father` tag (e.g. Father: #100). Moreover, each instantiation reports the enodes the instantiation is creating in the egraph (e.g. EN: #100).  
 Example of a trace file:  
 `### 0x2d70a38, quantifier1, Father: #99`  
 `EN: #100`  
