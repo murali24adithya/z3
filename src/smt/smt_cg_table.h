@@ -35,7 +35,8 @@ namespace smt {
         struct cg_unary_hash {
             unsigned operator()(enode * n) const {
                 SASSERT(n->get_num_args() == 1);
-                return n->get_arg(0)->get_root()->hash();
+                enode *nvar = n->get_arg(0);
+                return nvar->get_root()->hash();
             }
         };
 

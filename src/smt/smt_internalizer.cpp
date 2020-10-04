@@ -956,6 +956,8 @@ namespace smt {
        in the egraph.
     */
     enode * context::mk_enode(app * n, bool suppress_args, bool merge_tf, bool cgc_enabled) {
+        //enable_trace("mk_enode_detail");
+        //tout << mk_pp(n,m);
         TRACE("mk_enode_detail", tout << mk_pp(n, m) << "\nsuppress_args: " << suppress_args << ", merge_tf: " << 
               merge_tf << ", cgc_enabled: " << cgc_enabled << "\n";);
         SASSERT(!e_internalized(n));
@@ -968,6 +970,13 @@ namespace smt {
                    tout << "cached_generation: #" << n->get_id() << " " << generation << " " << m_generation << "\n";);
         }
         enode * e           = enode::mk(m, m_region, m_app2enode, n, generation, suppress_args, merge_tf, m_scope_lvl, cgc_enabled, true);
+        //Adithya Murali
+        symbol responsible_qid = this->context::get_curr_qid();
+        //if (responsible_qid != symbol::null) {
+        //  e->set_responsible_qid(responsible_qid);
+        //}
+        e->set_responsible_qid(responsible_qid);
+
         TRACE("mk_enode_detail", tout << "e.get_num_args() = " << e->get_num_args() << "\n";);
         if (n->get_num_args() == 0 && m.is_unique_value(n))
             e->mark_as_interpreted();
@@ -1009,12 +1018,16 @@ namespace smt {
         }
         SASSERT(e_internalized(n));
         m_stats.m_num_mk_enode++;
+<<<<<<< Updated upstream
         TRACE("mk_enode", tout << "created enode: #" << e->get_owner_id() << " for:\n" << mk_pp(n, m) << "\n";
               if (e->get_num_args() > 0) {
                   tout << "is_true_eq: " << e->is_true_eq() << " in cg_table: " << m_cg_table.contains_ptr(e) << " is_cgr: "
                        << e->is_cgr() << "\n";
               });
         SCTRACE("causality", is_trace_enabled("coming_from_quant"), tout << "EN: #" << e->get_owner_id() << "\n";);
+=======
+        //SCTRACE("causality", is_trace_enabled("coming_from_quant"), tout << "EN: #" << e->get_owner_id() << "\n";);
+>>>>>>> Stashed changes
 
         if (m.has_trace_stream())
             m.trace_stream() << "[attach-enode] #" << n->get_id() << " " << m_generation << "\n";        

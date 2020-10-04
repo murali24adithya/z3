@@ -71,6 +71,8 @@ namespace smt {
         friend class lookahead;
         friend class parallel;
     public:
+        //Adithya Murali
+        symbol                      curr_qid;
         statistics                  m_stats;
 
         std::ostream& display_last_failure(std::ostream& out) const;
@@ -245,6 +247,14 @@ namespace smt {
         //
         // -----------------------------------
     public:
+        //Adithya Murali
+        symbol get_curr_qid() {
+            return curr_qid;
+        }
+        void set_curr_qid(symbol qid) {
+            curr_qid = qid;
+        }
+
         ast_manager & get_manager() const {
             return m;
         }

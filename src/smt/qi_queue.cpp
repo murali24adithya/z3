@@ -295,6 +295,11 @@ namespace smt {
         }
         TRACE("qi_queue", tout << mk_pp(lemma, m) << "\n#" << lemma->get_id() << ":=\n" << mk_ll_pp(lemma, m););
         m_stats.m_num_instances++;
+        //Adithya Murali
+        symbol curr_qid = q->get_qid();
+        m_context.set_curr_qid(curr_qid);
+        //STRACE("amlog", tout << "\n#instantiated:#\n " << curr_qid  << "\n";);
+
         unsigned gen = get_new_gen(q, generation, ent.m_cost);
         display_instance_profile(f, q, num_bindings, bindings, proof_id, gen);
         m_context.internalize_instance(lemma, pr1, gen);

@@ -67,6 +67,9 @@ namespace smt {
        equality propagation, and the theory central bus of equalities.
     */
     class enode {
+        //Adithya Murali
+        symbol               responsible_qid;
+        //bool                responsible_qid;
         app  *              m_owner;    //!< The application that 'owns' this enode.
         enode *             m_root;     //!< Representative of the equivalence class
         enode *             m_next;     //!< Next element in the equivalence class.
@@ -109,7 +112,6 @@ namespace smt {
         approx_set          m_lbls;
         approx_set          m_plbls;
         enode *             m_args[0];          //!< Cached args
-        
         friend class context;
         friend class euf_manager;
         friend class conflict_resolution;
@@ -210,6 +212,16 @@ namespace smt {
 
         enode * get_next() const { 
             return m_next; 
+        }
+
+        //Adithya Murali
+        symbol get_responsible_qid() {
+        //bool get_responsible_qid() {
+                return responsible_qid;
+        }
+        void set_responsible_qid(symbol qid) {
+        //void set_responsible_qid(bool qid) {
+            responsible_qid = qid;
         }
 
         unsigned get_num_args() const { 

@@ -68,6 +68,8 @@ namespace smt {
         m_is_auxiliary(false),
         m_par(nullptr),
         m_par_index(0),
+        //Adithya Murali
+        //curr_qid(symbol::null),
         m_cg_table(m),
         m_is_diseq_tmp(nullptr),
         m_units_to_reassert(m),
@@ -213,6 +215,9 @@ namespace smt {
     }
 
     void context::init() {
+        //Adithya Murali
+        curr_qid = symbol::null;
+
         app * t       = m.mk_true();
         mk_bool_var(t);
         SASSERT(get_bool_var(t) == true_bool_var);

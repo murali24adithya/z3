@@ -207,23 +207,34 @@ namespace smt {
 
         void log_causality(
                 fingerprint* f,
+                //Adithya Murali
+                quantifier* q,
                 app * pat,
                 vector<std::tuple<enode *, enode *>> & used_enodes) {
 
             if (pat != nullptr) {
+<<<<<<< Updated upstream
                 if (used_enodes.size() > 0) {
                     STRACE("causality", tout << "New-Match: "<< static_cast<void*>(f););
                     STRACE("triggers",  tout <<", Pat: "<< expr_ref(pat, m()););
                     STRACE("causality", tout <<", Father:";);
+=======
+                if (used_enodes.size()>0){
+                    //STRACE("causality", tout << "New-Match: "<< static_cast<void*>(f););
+                    //STRACE("triggers",  tout <<", Pat: "<< expr_ref(pat, m()););
+                    //STRACE("causality", tout <<", Father:";);
+>>>>>>> Stashed changes
                 }
                 for (auto n : used_enodes) {
                     enode *orig = std::get<0>(n);
                     enode *substituted = std::get<1>(n);
                     if (orig == nullptr) {
-                        STRACE("causality", tout << " #" << substituted->get_owner_id(););
+//                        STRACE("causality", tout << " #" << substituted->get_owner_id(););
+                        //Adithya Murali
+                        STRACE("causality", tout << "\ninstantiated: " << q->get_qid() << "# dueto: " << substituted->get_responsible_qid() << "\n";);
                     }
                     else {
-                        STRACE("causality", tout << " (#" << orig->get_owner_id() << " #" << substituted->get_owner_id() << ")";);
+//                        STRACE("causality", tout << " (#" << orig->get_owner_id() << " #" << substituted->get_owner_id() << ")";);
                     }
                 }
                 if (used_enodes.size() > 0) {
@@ -302,8 +313,13 @@ namespace smt {
             get_stat(q)->update_max_generation(max_generation);
             fingerprint * f = m_context.add_fingerprint(q, q->get_id(), num_bindings, bindings, def);
             if (f) {
+<<<<<<< Updated upstream
                 if (is_trace_enabled("causality")) {
                     log_causality(f,pat,used_enodes);
+=======
+                if (is_trace_enabled("causality")){
+                    log_causality(f, q, pat, used_enodes);
+>>>>>>> Stashed changes
                 }
                 if (has_trace_stream()) {
                     log_add_instance(f, q, pat, num_bindings, bindings, used_enodes);

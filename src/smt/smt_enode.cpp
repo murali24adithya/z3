@@ -49,6 +49,9 @@ namespace smt {
         n->m_iscope_lvl       = iscope_lvl;
         n->m_lbl_hash         = -1;
         n->m_proof_is_logged = false;
+        //Adithya Murali
+        n->responsible_qid    = symbol::null;
+        //n->responsible_qid    = false;
         unsigned num_args     = n->get_num_args();
         for (unsigned i = 0; i < num_args; i++) {
             enode * arg  = app2enode[owner->get_arg(i)->get_id()];
